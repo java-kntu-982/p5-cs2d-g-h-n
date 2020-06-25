@@ -10,9 +10,8 @@
 
 ## Contributors
 
-|First Name|Last Name|Student ID|
 |---|---|---|
-|first|person|.......|
-|second|person|.......|
+|Amir|Naderi|9825853|
+|Reza|Honarmand|9826483|
 
 
