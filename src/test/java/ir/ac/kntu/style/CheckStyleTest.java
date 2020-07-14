@@ -152,7 +152,7 @@ public class CheckStyleTest {
                     listFiles(files, file, extension);
                 }
             } else if (folder.toString().endsWith("." + extension) &&
-                    !folder.toString().contains("module-info.java")) {
+                    !folder.toString().contains("src/main/module-info.java")) {
                 files.add(folder);
             }
         }
