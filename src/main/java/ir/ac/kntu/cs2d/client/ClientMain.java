@@ -1,7 +1,6 @@
 package ir.ac.kntu.cs2d.client;
 
 import javafx.scene.Group;
-import org.json.simple.JSONObject;
 
 
 
