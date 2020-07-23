@@ -1,55 +1,40 @@
 package ir.ac.kntu.cs2d.server;
 
 
+import javafx.application.Application;
+import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.shape.Polygon;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import javafx.scene.SceneAntialiasing;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
-import java.awt.*;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 
-public class ServerMain {
-    Group root = new Group();
-    Scene scene = new Scene(root);
+public class ServerMain extends Application {
+    static Group root = new Group();
+    static Scene scene = new Scene(root,800,630,false, SceneAntialiasing.BALANCED);
 
     public static void main(String[] args) {
-        JSONParser jsonParser = new JSONParser();
-
-        try{
-            Object obj = jsonParser.parse(new FileReader("src/main/resources/maps/map.json"));
-            JSONObject jsonObject = (JSONObject) obj;
-            JSONArray buildingsArray = (JSONArray) jsonObject.get("buildings");
-            Iterator<String> iterator = buildingsArray.iterator();
-            while (iterator.hasNext()){
-                ArrayList buildings = (ArrayList) buildingsArray.get(Integer.parseInt(iterator.next()));
-                Polygon polygon = new Polygon();
-                int[] points;
-                for(int i=0; i<=buildings.size();i+=2){
-                    polygon.getPoints().addAll((Double) buildings.get(i), (Double) buildings.get(i+1));
-                    points = new int[buildings.size()];
-                    points[i] = (int)buildings.get(i);
-                    /*if(i%2==0)
-                        XPoints.add((int)buildings.get(1));
-                    else
-                        YPoints.add((int)buildings.get(1));*/
-                }
-
-
-            }
-
-        } catch (ParseException | IOException e) {
-            e.printStackTrace();
-        }
+        launch(args);
     }
 
-    private ServerMain() {
+
+
+    public static Group getRoot() {
+        return root;
+    }
+
+
+
+    @Override
+    public void start(Stage stage) {
+        Pane pane = new Pane();
+        Scene scene1 = new Scene(pane,600,600);
+        stage.setScene(scene1);
+        stage.setTitle("two dimensional counter strike ");
+        Map map = new Map();
+        map.fileReader();
+        stage.show();
+
     }
 }
